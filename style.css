@@ -1,0 +1,141 @@
+/*colors: https://coolors.co/ffc857-692e38-254441-936426-b2b09b */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#gameArea {
+    width:100%;
+    height:100%;
+}
+
+.bg-playing {
+    background-color:#FFC857;
+}
+
+.bg-lost {
+    background-color:#692E38;
+}
+
+.bg-won {
+    background-color:#B2B09B;
+}
+
+.bg-paused {
+    background-color:#B2B09B;
+}
+
+#centerBall {
+    width:50px;
+    height:50px;
+    background-color:#000;
+    border-radius:25px;
+    z-index: 100;
+    position: absolute;
+    left:50%;
+    top: 50%;
+    transform:translate(-50%,-50%);
+}
+
+@keyframes podRotation {
+    0% {transform: rotate(0deg) translateZ(0);}
+    100% {transform: rotate(360deg) translateZ(0);}
+}
+
+.spin {
+    animation-timing-function: linear;
+    animation-name: podRotation;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+#spinningArea {
+    position: absolute;
+    left:50%;
+    top: 50%;
+}
+
+.pod {
+    position: relative;
+    height: 175px;
+    width: 3px;
+    margin-left: auto;
+    margin-right:auto;
+    background-color:#000;
+}
+
+.podBall {
+    position: relative;
+    width: 12px;
+    height: 12px;
+    background-color:#000;
+    border-radius:8px;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+.podContainer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-origin: 50% 0%;
+    transform:translateY(-50%);
+    transform:translateX(-50%);
+}
+
+#bottomContainer {
+    position: fixed;
+    width: 100%;
+    bottom: 30px;
+    /*height: 170px;*/
+    /*background-color: #254441;*/
+    text-align: center;
+
+}
+
+.actionBox {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.actionBox > h3 {
+    margin-top: 0;
+    padding-top: 0;
+    font-family: Impact;
+    color:#936426;
+    font-size: 200%;
+    margin-bottom:20px;
+}
+
+#scoreBox {
+    position: fixed;
+    top: 25px;
+    left: 0px;
+    display: inline-block;
+    padding-left: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    background-color: rgba(180,180,180,0.5);
+}
+
+.winningBox {
+    background-color: rgba(100,255,100,0.5) !important;
+}
+
+.losingBox {
+    background-color: rgba(255,100,100,0.5) !important;
+}
+
+#timeBox {
+    position: fixed;
+    top: 20px;
+    right: 0px;
+    display: inline-block;
+    padding-left: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    background-color: rgba(180,180,180,0.5);
+}

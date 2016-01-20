@@ -1,0 +1,51 @@
+<html ng-app="gameApp">
+	<head>
+		<title>Multi Liner</title>
+		<link rel="stylesheet" type="text/css" href="style.css"></link>
+		<link rel="stylesheet" type="text/css" href="button.css"></link>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+		<script src="rapid.io.js"></script>
+		<script src="script.js"></script>
+	</head>
+	<body ng-controller="GameController as gameController">
+		<section id="scoreBox" ng-class="(gameController.status.myScore >= gameController.status.hisScore) ? 'winningBox' : 'losingBox'">
+			<strong>{{gameController.status.myScore}}</strong> / {{gameController.status.myScore + gameController.status.hisScore}}
+		</section>
+		<section id="timeBox">
+			{{gameController.status.timeLeft}}
+		</section>
+		<section id="gameArea" ng-class="'bg-' + gameController.status.status">		
+			<div id="spinningArea" ng-class="(gameController.status.status == 'playing') ? 'spin' : ''">
+				<div id="centerBall"></div>
+				<div class="podContainer" ng-repeat="p in gameController.pods">
+					<div ng-style="p.getAngle()">s
+						<div class="pod"></div>
+			        	<div class="podBall"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section id="bottomContainer">
+			<div class="actionBox" ng-hide="gameController.multi.canPlay()">
+				<h3>Waiting for other players to join</h3>
+				<h4>Share the link <a href="#">{{gameLink}}</a> to get started</h4>
+			</div>
+			<div class="actionBox" ng-show="gameController.multi.canPlay() && (gameController.status.status == 'paused')">
+				<div ng-click="gameController.multi.startGame()" class="button"><div class="outer"><div class="height"><div class="inner">START</div></div></div></div>
+			</div>
+			<div class="actionBox" ng-show="gameController.status.status == 'playing'">
+				<div ng-click="gameController.addMyPod()" class="button"><div class="outer"><div class="height"><div class="inner">Add</div></div></div></div>
+			</div>
+			<div class="actionBox" ng-show="gameController.status.status == 'lost'">
+				<h3>YOU LOST</h3>
+				<div ng-click="gameController.multi.startGame()" class="button"><div class="outer"><div class="height"><div class="inner">RE-START</div></div></div></div>
+
+			</div>
+			<div class="actionBox" ng-show="gameController.status.status == 'won'">
+				<h3>YOU WON</h3>
+				<div ng-click="gameController.multi.startGame()" class="button"><div class="outer"><div class="height"><div class="inner">RE-START</div></div></div></div>
+			</div>
+		</section>
+	</body>
+</html>
